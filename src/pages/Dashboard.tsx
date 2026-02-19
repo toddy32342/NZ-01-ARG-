@@ -2,27 +2,39 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import logo from "@/assets/logo.png";
 
-type Section = "home" | "func" | "relatorios" | "arquivos" | "videos";
+type Section = "home" | "func" | "relatorios" | "arquivos" | "videos" | "nz01";
 
 const EMPLOYEES = [
-  { name: "Daniel M.", sector: "Biosegurança", status: "ATIVO", statusClass: "badge-ativo" },
-  { name: "Ingrid S.", sector: "Biotecnologia", status: "LICENÇA", statusClass: "badge-licenca" },
-  { name: "Volk", sector: "Pesquisa", status: "INATIVO", statusClass: "badge-inativo" },
-  { name: "████████", sector: "—", status: "ARQUIVADO", statusClass: "badge-arquivado" },
-  { name: "Heinz K.", sector: "Biosegurança", status: "ATIVO", statusClass: "badge-ativo" },
+  { name: "Daniel M.", sector: "Biosegurança", status: "ATIVO", statusClass: "badge-ativo", note: null },
+  { name: "Ingrid S.", sector: "Biotecnologia", status: "LICENÇA", statusClass: "badge-licenca", note: "⚠ Afastamento médico — Gestação em curso. Retorno previsto: INDEFINIDO." },
+  { name: "Volk", sector: "Pesquisa", status: "INATIVO", statusClass: "badge-inativo", note: null },
+  { name: "████████", sector: "—", status: "ARQUIVADO", statusClass: "badge-arquivado", note: "COFEE-0: Identidade suprimida por protocolo interno. Motivo real: [INFILTRAÇÃO DETECTADA — NÃO DIVULGAR]" },
+  { name: "Heinz K.", sector: "Biosegurança", status: "ATIVO", statusClass: "badge-ativo", note: null },
 ];
 
 const REPORTS = [
   { id: "REL-001", title: "Relatório de Biossegurança — Setor 7", date: "2027-03-14", level: 1, content: "Análise de contenção realizadas no perímetro interno. Nenhuma anomalia detectada. Protocolo 7-C mantido." },
   { id: "REL-002", title: "Avaliação de Campo — Projeto VOLK", date: "2027-01-28", level: 2, content: "Registros do sujeito Volk foram marcados como inconclusivos. Arquivos de acompanhamento transferidos para protocolo fechado. ACESSO NÍVEL 2 REQUERIDO." },
   { id: "ERRO-001", title: "Registro de Erro — COFEE", date: "2026-12-05", level: 1, content: "Inconsistência detectada no banco de dados de pessoal. Funcionário ID: COFEE-0 foi removido do sistema por ordem interna. Motivo: [REDACTED]. Investigação em andamento." },
+  // ─────────────────────────────────────────────────────────────────
+  // EDITÁVEL: Adicione abaixo novos relatórios seguindo o modelo:
+  // { id: "REL-003", title: "Título do relatório", date: "2027-XX-XX", level: 1, content: "Conteúdo do relatório aqui." },
+  // Nível de acesso: 1 = qualquer usuário logado | 2 = apenas daniel/admin | 3 = apenas admin
+  // ─────────────────────────────────────────────────────────────────
 ];
 
 const ARCHIVES = [
   { id: "ARQ-001", name: "Protocolo 17-B", type: "PDF", size: "2.3 MB", status: "ACESSÍVEL", level: 1 },
   { id: "ARQ-002", name: "Arquivo VOLK — Fase 2", type: "ENC", size: "█████", status: "CRIPTOGRAFADO", level: 3 },
-  { id: "ARQ-003", name: "Laudos Médicos — Ing. S.", type: "MED", size: "1.1 MB", status: "ACESSÍVEL", level: 2 },
-  { id: "ARQ-004", name: "████████ — Dossiê", type: "███", size: "█████", status: "REMOVIDO", level: 99 },
+  { id: "ARQ-003", name: "Laudos Médicos — Ing. S. [GESTAÇÃO]", type: "MED", size: "1.1 MB", status: "ACESSÍVEL", level: 2 },
+  { id: "ARQ-004", name: "████████ — Dossiê COFEE", type: "███", size: "█████", status: "REMOVIDO", level: 99 },
+  { id: "ARQ-005", name: "NZ-01 — Relatório de Falhas Completo", type: "ENC", size: "█████", status: "CRIPTOGRAFADO", level: 3 },
+  { id: "ARQ-006", name: "NZ-01 / A-00 — Protótipo Inicial", type: "BIO", size: "4.7 MB", status: "ACESSÍVEL", level: 2 },
+  // ─────────────────────────────────────────────────────────────────
+  // EDITÁVEL: Adicione novos arquivos seguindo o modelo:
+  // { id: "ARQ-007", name: "Nome do arquivo", type: "PDF/BIO/ENC", size: "X.X MB", status: "ACESSÍVEL", level: 1 },
+  // Status: "ACESSÍVEL" | "CRIPTOGRAFADO" | "REMOVIDO"
+  // ─────────────────────────────────────────────────────────────────
 ];
 
 export default function Dashboard() {
@@ -55,6 +67,7 @@ export default function Dashboard() {
     { id: "func", label: "FUNCIONÁRIOS", minLevel: 0 },
     { id: "relatorios", label: "RELATÓRIOS", minLevel: 1 },
     { id: "arquivos", label: "ARQUIVOS", minLevel: 1 },
+    { id: "nz01", label: "PROJ. NZ-01", minLevel: 2 },
     { id: "videos", label: "REGISTROS", minLevel: 2 },
   ];
 
@@ -224,6 +237,7 @@ export default function Dashboard() {
                       <th className="text-left px-4 py-2 text-muted-foreground tracking-widest font-normal">NOME</th>
                       <th className="text-left px-4 py-2 text-muted-foreground tracking-widest font-normal">SETOR</th>
                       <th className="text-left px-4 py-2 text-muted-foreground tracking-widest font-normal">STATUS</th>
+                      {level >= 2 && <th className="text-left px-4 py-2 text-muted-foreground tracking-widest font-normal">OBS. INTERNAS</th>}
                     </tr>
                   </thead>
                   <tbody>
@@ -238,6 +252,17 @@ export default function Dashboard() {
                             {emp.status}
                           </span>
                         </td>
+                        {level >= 2 && (
+                          <td className="px-4 py-3 text-muted-foreground max-w-xs">
+                            {emp.note ? (
+                              <span className={`text-xs leading-relaxed ${emp.name === "████████" ? "text-alert-red" : "text-alert-yellow"}`}>
+                                {emp.note}
+                              </span>
+                            ) : (
+                              <span className="opacity-30">—</span>
+                            )}
+                          </td>
+                        )}
                       </tr>
                     ))}
                   </tbody>
@@ -245,7 +270,7 @@ export default function Dashboard() {
               </div>
 
               <div className="text-xs text-alert-red">
-                ⚠ Registro incompleto detectado. Um funcionário foi suprimido do banco de dados.
+                ⚠ Registro incompleto detectado. Um funcionário foi suprimido do banco de dados. Ref: COFEE-0.
               </div>
             </div>
           )}
@@ -314,6 +339,103 @@ export default function Dashboard() {
                     </span>
                   </div>
                 ))}
+              </div>
+            </div>
+          )}
+
+
+          {/* ===== PROJ. NZ-01 (nível 2+) ===== */}
+          {section === "nz01" && (
+            <div className="space-y-6 animate-fade-in-up">
+              <div className="flex items-center gap-4">
+                <h2 className="text-xs font-bold tracking-widest text-primary uppercase">Projeto NZ-01 — Arma Biológica</h2>
+                <div className="flex-1 h-px bg-border" />
+                <span className="stamp text-xs">CONFIDENCIAL</span>
+              </div>
+
+              {/* Aviso de classificação */}
+              <div className="border border-alert-red bg-card p-4">
+                <div className="text-xs font-bold text-alert-red tracking-widest animate-flicker">
+                  ⚠ NÍVEL DE RISCO: EXTREMO — PROTOCOLO BIO-7 ATIVO
+                </div>
+                {/* EDITÁVEL: Altere a descrição geral do projeto NZ-01 abaixo */}
+                <p className="text-xs text-muted-foreground mt-2 leading-relaxed">
+                  O Projeto NZ-01 consiste no desenvolvimento de um agente biológico de supressão seletiva. Todas as iterações
+                  anteriores ao modelo final resultaram em falhas críticas de contenção. O histórico de versões está documentado
+                  abaixo em ordem cronológica de desenvolvimento.
+                </p>
+              </div>
+
+              {/* Timeline de versões */}
+              <div className="space-y-3">
+                <div className="text-xs text-muted-foreground tracking-widest uppercase mb-2">— Histórico de Iterações —</div>
+
+                {/* A-00 */}
+                <div className="terminal-box p-4 border-l-4 border-l-alert-yellow space-y-2">
+                  <div className="flex items-center justify-between">
+                    <span className="text-xs font-bold text-alert-yellow tracking-widest">A-00 — PROTÓTIPO INICIAL</span>
+                    <span className="text-xs text-muted-foreground">2024-07-02</span>
+                  </div>
+                  {/* EDITÁVEL: Descreva a versão A-00 abaixo */}
+                  <p className="text-xs text-muted-foreground leading-relaxed">
+                    Primeira iteração do agente. Falha catastrófica na fase de estabilização — agente mostrou
+                    comportamento imprevisível em ambientes controlados. Projeto suspenso por 4 meses para revisão de protocolos.
+                  </p>
+                  <span className="badge-inativo text-xs px-2 py-0.5 font-bold">FALHA — DESCONTINUADO</span>
+                </div>
+
+                {/* Espaço para versões intermediárias — EDITÁVEL */}
+                {/* 
+                  EDITÁVEL: Copie e cole o bloco abaixo para adicionar mais versões (A-01, A-02, B-00, etc.)
+                  
+                  <div className="terminal-box p-4 border-l-4 border-l-alert-yellow space-y-2">
+                    <div className="flex items-center justify-between">
+                      <span className="text-xs font-bold text-alert-yellow tracking-widest">A-01 — NOME DA VERSÃO</span>
+                      <span className="text-xs text-muted-foreground">AAAA-MM-DD</span>
+                    </div>
+                    <p className="text-xs text-muted-foreground leading-relaxed">
+                      Descrição da versão aqui. O que aconteceu, qual foi a falha, etc.
+                    </p>
+                    <span className="badge-inativo text-xs px-2 py-0.5 font-bold">FALHA — DESCONTINUADO</span>
+                  </div>
+                */}
+
+                {/* NZ-01 — versão final, bloqueada para nível 3 */}
+                <div className={`terminal-box p-4 border-l-4 space-y-2 ${level >= 3 ? "border-l-alert-red" : "border-l-border opacity-50"}`}>
+                  <div className="flex items-center justify-between">
+                    <span className={`text-xs font-bold tracking-widest ${level >= 3 ? "text-alert-red animate-flicker" : "text-muted-foreground"}`}>
+                      NZ-01 — VERSÃO FINAL
+                    </span>
+                    <span className="text-xs text-muted-foreground">{level >= 3 ? "2027-01-15" : "████████"}</span>
+                  </div>
+                  {level >= 3 ? (
+                    <>
+                      {/* EDITÁVEL: Descreva a versão final NZ-01 abaixo (apenas admin vê) */}
+                      <p className="text-xs text-muted-foreground leading-relaxed">
+                        Iteração final considerada operacional pelo comitê interno. Detalhes de composição e vetor de
+                        dispersão classificados em nível máximo. Acesso restrito ao Diretor e pesquisadores sênior autorizados.
+                        Status de implantação: [REDACTED].
+                      </p>
+                      <span className="badge-ativo text-xs px-2 py-0.5 font-bold">OPERACIONAL — ATIVO</span>
+                    </>
+                  ) : (
+                    <div className="flex items-center gap-2">
+                      <span className="text-xs text-muted-foreground redacted">████████████████████████████████████████</span>
+                    </div>
+                  )}
+                  {level < 3 && (
+                    <div className="text-xs text-alert-red">🔒 ACESSO NÍVEL 3 REQUERIDO</div>
+                  )}
+                </div>
+              </div>
+
+              {/* Nota de rodapé */}
+              <div className="terminal-box p-3">
+                {/* EDITÁVEL: Mensagem de rodapé da seção NZ-01 */}
+                <p className="text-xs text-muted-foreground text-center">
+                  Qualquer divulgação não autorizada deste projeto será tratada como traição de Estado. Ref. interna:{" "}
+                  <span className="text-alert-red">NZ-CLASSIFIED-001</span>
+                </p>
               </div>
             </div>
           )}
