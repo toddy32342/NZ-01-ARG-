@@ -2,10 +2,15 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import logo from "@/assets/logo.png";
 
+// ─────────────────────────────────────────────────────────────────
+// EDITÁVEL: Adicione ou altere credenciais aqui.
+// level: 1 = acesso básico | 2 = acesso intermediário | 3 = acesso total
+// ─────────────────────────────────────────────────────────────────
 const USERS: Record<string, { pass: string; level: number }> = {
-  admin: { pass: "DPA-2027", level: 3 },
-  daniel: { pass: "research01", level: 2 },
-  ingrid: { pass: "bio-secure", level: 1 },
+  toddy: { pass: "salvationofgerman1", level: 3 },  // EDITÁVEL: Diretor — acesso total
+  admin: { pass: "DPA-2027", level: 3 },             // EDITÁVEL: Admin — acesso total
+  daniel: { pass: "research01", level: 2 },          // EDITÁVEL: Pesquisador — acesso intermediário
+  ingrid: { pass: "bio-secure", level: 1 },          // EDITÁVEL: Biotec — acesso básico
 };
 
 function useTypewriter(text: string, speed = 30) {
@@ -31,7 +36,7 @@ export default function Login() {
   const [attempts, setAttempts] = useState(0);
   const navigate = useNavigate();
 
-  const header = useTypewriter("SISTEMA DE AUTENTICAÇÃO — DPA/SEC-7", 40);
+  const header = useTypewriter("SISTEMA DE AUTENTICAÇÃO — NordSternLab/SEC-7", 40);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -87,7 +92,7 @@ export default function Login() {
               <div className="relative">
                 <img
                   src={logo}
-                  alt="DPA"
+                  alt="NordSternLab"
                   className="h-16 w-16 opacity-90"
                   style={{ filter: "drop-shadow(0 0 8px hsl(187 100% 50% / 0.4))" }}
                 />
@@ -99,7 +104,7 @@ export default function Login() {
                 {header}<span className="animate-blink text-primary">█</span>
               </div>
               <h1 className="text-primary font-bold text-lg tracking-widest">ACESSO RESTRITO</h1>
-              <p className="text-xs text-muted-foreground tracking-wider">Diretoria de Pesquisa Avançada</p>
+              <p className="text-xs text-muted-foreground tracking-wider">NordSternLab — Setor de Segurança Interna</p>
             </div>
           </div>
 
