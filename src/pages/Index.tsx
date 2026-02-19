@@ -30,7 +30,7 @@ const initials = (name: string) => name.split(" ").map(n => n[0]).join("").toUpp
 
 export default function Index() {
   const [tick, setTick] = useState(0);
-  const typed = useTypewriter("DIRETORIA DE PESQUISA AVANÇADA — PORTAL PÚBLICO", 35);
+  const typed = useTypewriter("NORDSTERNLAB — PORTAL PÚBLICO DE PESQUISA ESTRATÉGICA", 35);
 
   useEffect(() => {
     const t = setInterval(() => setTick(x => x + 1), 1000);
@@ -54,10 +54,10 @@ export default function Index() {
       {/* HEADER */}
       <header className="border-b border-border bg-card sticky top-0 z-40">
         <div className="flex items-center gap-4 px-6 py-3">
-          <img src={logo} alt="DPA Logo" className="h-10 w-10 opacity-90 animate-rotate-slow" style={{ animationDuration: "30s" }} />
+          <img src={logo} alt="NordSternLab" className="h-10 w-10 opacity-90 animate-rotate-slow" style={{ animationDuration: "30s" }} />
           <div className="flex-1">
-            <div className="text-primary font-bold text-sm tracking-widest">D.P.A.</div>
-            <div className="text-muted-foreground text-xs tracking-wider">DEPARTAMENTO DE SEGURANÇA E PESQUISA ESTRATÉGICA</div>
+            <div className="text-primary font-bold text-sm tracking-widest">NordSternLab</div>
+            <div className="text-muted-foreground text-xs tracking-wider">LABORATÓRIO DE PESQUISA ESTRATÉGICA E BIOSSEGURANÇA</div>
           </div>
           <div className="text-right hidden md:block">
             <div className="text-xs text-muted-foreground">{timestamp}</div>
@@ -96,9 +96,10 @@ export default function Index() {
         {/* Status & descrição */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div className="terminal-box p-4 space-y-2">
-            <div className="text-xs text-muted-foreground tracking-widest uppercase">Sobre o Órgão</div>
+            <div className="text-xs text-muted-foreground tracking-widest uppercase">Sobre o Laboratório</div>
+            {/* EDITÁVEL: Descrição pública do laboratório */}
             <p className="text-xs text-foreground leading-relaxed">
-              Órgão governamental responsável por pesquisa estratégica, biossegurança e segurança nacional. Fundado em 2019 sob decreto classificado.
+              O NordSternLab é uma instituição de pesquisa científica avançada, especializada em biossegurança, biotecnologia e defesa estratégica. Fundado em 2019 sob decreto classificado.
             </p>
           </div>
           <div className="terminal-box p-4 space-y-2">
@@ -186,8 +187,8 @@ export default function Index() {
       {/* FOOTER */}
       <footer className="border-t border-border mt-8 py-4 px-6">
         <div className="flex flex-col md:flex-row justify-between items-center gap-2">
-          <p className="text-xs text-muted-foreground">© 2027 DIRETORIA DE PESQUISA AVANÇADA</p>
-          <p className="text-xs text-muted-foreground animate-flicker">TODOS OS DADOS SÃO MONITORADOS.</p>
+          <p className="text-xs text-muted-foreground">© 2027 NordSternLab — TODOS OS DIREITOS RESERVADOS</p>
+          <p className="text-xs text-muted-foreground animate-flicker">TODOS OS DADOS SÃO MONITORADOS E REGISTRADOS.</p>
         </div>
       </footer>
     </div>
