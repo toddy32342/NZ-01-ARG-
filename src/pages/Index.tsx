@@ -8,7 +8,7 @@ import vulk from "@/assets/vulk1.png";
 import ida from "@/assets/ida.png"
 
 const employees = [
-  { id: "daniel", name: "Daniel M.", sector: "Biosegurança", status: "ATIVO", statusClass: "badge-ativo", img: daniel },
+  { id: "daniel", name: "Daniel V.", sector: "Biosegurança", status: "ATIVO", statusClass: "badge-ativo", img: daniel },
   { id: "ingrid", name: "Ingrid S.", sector: "Biotecnologia", status: "EM LICENÇA", statusClass: "badge-licenca", img: ingrid },
   { id: "volk", name: "Volk", sector: "Diretor", status: "INATIVO", statusClass: "badge-inativo", img: vulk },
   { id: "redacted", name: "████████", sector: "—", status: "ARQUIVADO", statusClass: "badge-arquivado", img: null, redacted: true },
