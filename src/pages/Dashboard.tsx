@@ -1,7 +1,6 @@
 import { useEffect, useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
-import logoFallback from "@/assets/logo.png";
-import Laboratorio7 from "@/assets/Lab.png"
+import logoFallback from "@/assets/logo.png"
 
 type Section = "home" | "func" | "relatorios" | "arquivos" | "videos" | "nz01" | "plano";
 
@@ -238,7 +237,7 @@ export default function Dashboard() {
                 <div className="text-xs font-bold text-alert-yellow tracking-widest">⚠ INCONSISTÊNCIA — COFEE-0</div>
                 <p className="text-xs text-muted-foreground mt-2">Registros com inconsistências. Investigação pendente.</p>
               </div>
-              <div className="terminal-box p-4"><div className="text-xs text-muted-foreground tracking-widest uppercase mb-2">IMAGEM DO LABORATÓRIO</div><div className="aspect-[21/9] bg-secondary border border-border flex items-center justify-center"><div className="text-xs text-muted-foreground opacity-40"><img src="src/assets/Lab.png"/></div></div></div>
+              <div className="terminal-box p-4"><div className="text-xs text-muted-foreground tracking-widest uppercase mb-2">IMAGEM DO LABORATÓRIO</div><div className="aspect-[21/9] bg-secondary border border-border flex items-center justify-center"><div className="text-xs text-muted-foreground opacity-40"><img src="@/assets/Lab.png" /></div></div></div>
               <div className="space-y-3">
                 <h3 className="text-xs font-bold tracking-widest text-primary uppercase">Boletins Internos</h3>
                 {NEWS.filter(n => level >= n.level).map(n => (
@@ -420,7 +419,7 @@ export default function Dashboard() {
                 <div><span className="text-muted-foreground">STATUS:</span> <span className={selectedArchive.status==="ACESSÍVEL"?"text-primary":"text-alert-red"}>{selectedArchive.status}</span></div>
               </div>
               <p className="text-xs text-muted-foreground border-t border-border pt-3">{selectedArchive.description}</p>
-              {selectedArchive.pdfUrl?<a href={selectedArchive.pdfUrl} target="_blank" rel="noopener noreferrer" className="inline-block px-4 py-2 text-xs font-bold tracking-widest uppercase border border-primary text-primary hover:bg-primary hover:text-primary-foreground transition-all">► ABRIR</a>:<div className="text-xs text-muted-foreground border border-border p-3">Arquivo não vinculado. Edite <span className="text-primary">pdfUrl</span> em ARCHIVES.</div>}
+              {selectedArchive.pdfUrl?<a href={selectedArchive.pdfUrl} target="_blank" rel="noopener noreferrer" className="inline-block px-4 py-2 text-xs font-bold tracking-widest uppercase border border-primary text-primary hover:bg-primary hover:text-primary-foreground transition-all">► ABRIR</a>:<div className="text-xs text-muted-foreground border border-border p-3">Arquivo não vinculado ou <span className="text-primary">não</span> encontrado</div>}
             </div>
           </div>
         </div>
