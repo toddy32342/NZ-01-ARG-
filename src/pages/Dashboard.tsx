@@ -237,7 +237,7 @@ export default function Dashboard() {
                 <div className="text-xs font-bold text-alert-yellow tracking-widest">⚠ INCONSISTÊNCIA — COFEE-0</div>
                 <p className="text-xs text-muted-foreground mt-2">Registros com inconsistências. Investigação pendente.</p>
               </div>
-              <div className="terminal-box p-4"><div className="text-xs text-muted-foreground tracking-widest uppercase mb-2">IMAGEM DO LABORATÓRIO</div><div className="aspect-[21/9] bg-secondary border border-border flex items-center justify-center"><div className="text-xs text-muted-foreground opacity-40"><img src="src/assets/Lab.png"/></div></div></div>
+              <div className="terminal-box p-4"><div className="text-xs text-muted-foreground tracking-widest uppercase mb-2">IMAGEM DO LABORATÓRIO</div><div className="aspect-[21/9] bg-secondary border border-border flex items-center justify-center"><div className="text-xs text-muted-foreground opacity-40"><img src="../assets/Lab.png"/></div></div></div>
               <div className="space-y-3">
                 <h3 className="text-xs font-bold tracking-widest text-primary uppercase">Boletins Internos</h3>
                 {NEWS.filter(n => level >= n.level).map(n => (
