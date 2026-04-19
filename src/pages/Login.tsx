@@ -18,7 +18,7 @@ const USERS: Record<string, { pass: string; level: number; blocked?: boolean }> 
   toddy:  { pass: "salvationofgerman1", level: 3 },   // EDITÁVEL: Diretor — acesso total
   admin:  { pass: "DPA-2027", level: 3 },              // EDITÁVEL: Admin — acesso total
   daniel: { pass: "research01", level: 2 },             // EDITÁVEL: Pesquisador
-  ingrid: { pass: "bio-secure", level: 1 },             // EDITÁVEL: Biotec
+  ingrid: { pass: "Fritz", level: 1 },             // EDITÁVEL: Biotec
   volk:   { pass: "volk2027", level: 2, blocked: true },// EDITÁVEL: Volk — BLOQUEADO (glitch + travamento)
   premiere: {pass: "nordstern2026", level: 0}
 };
