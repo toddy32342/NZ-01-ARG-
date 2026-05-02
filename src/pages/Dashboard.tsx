@@ -7,11 +7,11 @@ type Section = "home" | "func" | "relatorios" | "arquivos" | "videos" | "nz01" |
 
 const EMPLOYEES = [
   { name: "Daniel V.", sector: "Biosegurança", status: "ATIVO", statusClass: "badge-ativo", note: null },
-  { name: "Ingrid S.", sector: "Biotecnologia", status: "LICENÇA", statusClass: "badge-licenca", note: "⚠ Afastamento médico — Gestação em curso. Ver ARQ-003." },
+  { name: "Ingrid S.", sector: "Biotecnologia", status: "INATIVO", statusClass: "badge-licenca", note: "⚠ Afastamento médico — Gestação em curso. Ver ARQ-003." },
   { name: "Volk L.", sector: "Diretoria", status: "INATIVO", statusClass: "badge-inativo", note: null },
   { name: "████████", sector: "—", status: "ARQUIVADO", statusClass: "badge-arquivado", note: "COFEE-0: Identidade suprimida. [INFILTRAÇÃO DETECTADA]." },
   { name: "Heinz K.", sector: "Biosegurança", status: "ATIVO", statusClass: "badge-ativo", note: null },
-  { name: "Ida S.", sector: "Pesquisa", status: "ATIVO", statusClass: "badge-ativo", note: null },
+  { name: "Ida S.", sector: "Biotecnologia", status: "INATIVO", statusClass: "badge-ativo", note: null },
 ];
 
 const REPORTS = [
@@ -26,7 +26,7 @@ const ARCHIVES: { id: string; name: string; type: string; size: string; status: 
   { id: "ARQ-002", name: "Arquivo VOLK — Fase 2", type: "ENC", size: "█████", status: "CRIPTOGRAFADO", level: 3, pdfUrl: "VolkFin", description: "Dados dos testes em campo de 2029." },
   { id: "ARQ-003", name: "Laudo Médico — Ing. S.", type: "MED", size: "1.1 MB", status: "ACESSÍVEL", level: 2, pdfUrl: "https://drive.google.com/file/d/1ZEDjUKdUscGbxKWz38neGZJjvTgxA-Qj/preview", description: "Histórico clínico: Exposição ao A-01 e gestação (2027)." },
   { id: "ARQ-004", name: "████████ — Dossiê COFEE", type: "███", size: "█████", status: "REMOVIDO", level: 99, pdfUrl: "", description: "Suprimido após 18/07/2029." },
-  { id: "ARQ-005", name: "NZ-01 — Falhas", type: "ENC", size: "█████", status: "CRIPTOGRAFADO", level: 3, pdfUrl: "NZ-01", description: "Relatório de falhas estruturais das versões A e B." },
+  { id: "ARQ-005", name: "RP-10 — Falhas", type: "ENC", size: "█████", status: "CRIPTOGRAFADO", level: 3, pdfUrl: "NZ-01", description: "Relatório de falhas estruturais das versões A e B." },
   { id: "ARQ-006", name: "A-00 / A-01", type: "BIO", size: "4.7 MB", status: "ACESSÍVEL", level: 2, pdfUrl: "", description: "Dados técnicos do primeiro protótipo (08/05/2027)." },
   { id: "ARQ-007", name: "Incidente DL-09", type: "PDF", size: "█████", status: "ACESSÍVEL", level: 3, pdfUrl: "nem tente.", description: "Laudo detalhado do incidente em 11/02/2028." },
 ];
@@ -36,8 +36,8 @@ const YOUTUBE_VIDEOS = [
     id: "VID-002", 
     title: "Incidente — CAM-03", 
     description: "Registro: falha crítica.", 
-    youtubeId: "", 
-    date: "2028-02-11", // <-- ESTA É A MUDANÇA MAIS IMPORTANTE
+    youtubeId: "HBka6ED8g8vqZImO", 
+    date: "2027-12-20", // <-- ESTA É A MUDANÇA MAIS IMPORTANTE
     level: 3 
   },
 ];
