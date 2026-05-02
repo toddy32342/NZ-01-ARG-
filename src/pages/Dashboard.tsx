@@ -11,7 +11,7 @@ const EMPLOYEES = [
   { name: "Volk L.", sector: "Diretoria", status: "INATIVO", statusClass: "badge-inativo", note: null },
   { name: "████████", sector: "—", status: "ARQUIVADO", statusClass: "badge-arquivado", note: "COFEE-0: Identidade suprimida. [INFILTRAÇÃO DETECTADA]." },
   { name: "Heinz K.", sector: "Biosegurança", status: "ATIVO", statusClass: "badge-ativo", note: null },
-  { name: "Ida S.", sector: "Biotecnologia", status: "INATIV", statusClass: "badge-ativo", note: null },
+  { name: "Ida S.", sector: "Biotecnologia", status: "INATIVO", statusClass: "badge-ativo", note: null },
 ];
 
 const REPORTS = [
